@@ -64,7 +64,7 @@ function AdminStack() {
         headerTintColor: "#E2E8F0",
       }}
     >
-      <Stack.Screen name="AdminProdutos" component={AdminView} options={{ title: "Meus produtos" }} />
+      <Stack.Screen name="AdminProdutos" component={AdminProdutosView} options={{ title: "Meus produtos" }} />
       <Stack.Screen name="CadastrarProduto" component={AdminJogos} options={{ title: "Cadastrar produto" }} />
       <Stack.Screen name="EditarProduto" component={AdminJogos} options={{ title: "Editar produto" }} />
     </Stack.Navigator>
