@@ -73,6 +73,14 @@ const CamisasView = () => {
                 )}
                 ListEmptyComponent={<Text style={styles.nenhumResultado}>Nenhuma camisa encontrada.</Text>}
             />
+            
+            {produtoSelecionado && (
+                <DetalhesProduto
+                    produto={produtoSelecionado}
+                    onFechar={() => setProdutoSelecionado(null)}
+                />
+            )}
+
         </View>
     );
 }
