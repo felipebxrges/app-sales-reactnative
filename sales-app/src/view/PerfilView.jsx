@@ -4,19 +4,24 @@ import { Ionicons } from '@expo/vector-icons';
 import { useAuth } from './components/authProvider/AuthProvider';
 
 const PerfilView = ({ navigation }) => {
-  const { usuario } = useAuth();
+  const { logado, setLogado } = useAuth();
+
+  const logout = () => {
+    setLogado(null);
+    navigation.replace('Login');
+  }
 
   return (
     <View style={styles.container}>
       <View style={styles.perfilContainer}>
         <Image
-          source={{ uri: usuario.image }}
+          source={{ uri: logado.image }}
           style={styles.avatar}
         />
 
-        <Text style={styles.nome}>{usuario.nome}</Text>
+        <Text style={styles.nome}>{logado.nome}</Text>
 
-        <Text style={styles.saldo}>Saldo: R$ {usuario.saldo.toFixed(2)}</Text>
+        <Text style={styles.saldo}>Saldo: R$ {logado.saldo.toFixed(2)}</Text>
       </View>
 
       <TouchableOpacity style={styles.botaoLogout} onPress={logout}>

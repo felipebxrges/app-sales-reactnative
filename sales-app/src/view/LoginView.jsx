@@ -1,7 +1,7 @@
 import { Button, Card, Snackbar, Text, TextInput } from "react-native-paper"
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context"
 import { StatusBar } from 'expo-status-bar';
-import { Pressable, StyleSheet, KeyboardAvoidingView } from "react-native";
+import { Pressable, StyleSheet, KeyboardAvoidingView, Keyboard } from "react-native";
 import { useEffect, useState } from "react";
 import { useAuth } from "./components/authProvider/AuthProvider";
 
@@ -23,6 +23,7 @@ const LoginView = ( {navigation} )=>{
     },[showSnack])
 
     const handleLogin = ()=>{
+      Keyboard.dismiss()
       console.log(campos)
       if (login(campos.email, campos.senha)){
           navigation.replace('AppTabs')

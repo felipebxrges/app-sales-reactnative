@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, FlatList, Image, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import DetalhesProduto from './components/DetalhesProduto';
+import DetalhesCamisa from './components/DetalhesCamisa';
 
 const camisas = [
     {
@@ -75,7 +75,7 @@ const CamisasView = () => {
             />
             
             {produtoSelecionado && (
-                <DetalhesProduto
+                <DetalhesCamisa
                     produto={produtoSelecionado}
                     onFechar={() => setProdutoSelecionado(null)}
                 />

@@ -1,15 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, TextInput, Button, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import { Ionicons } from '@expo/vector-icons';
 
-const CadastrarProdutoView = ({ navigation }) => {
-    const [nome, setNome] = useState('');
-    const [descricao, setDescricao] = useState('');
-    const [preco, setPreco] = useState('');
-    const [imagem, setImagem] = useState(null);
-    const [erros, setErros] = useState([]);
+const AdminEditarCamisaView = ({ route, navigation }) => {
+    const { produto } = route.params;
 
+    const [nome, setNome] = useState(produto?.nome || '');
+    const [descricao, setDescricao] = useState(produto?.descricao || '');
+    const [preco, setPreco] = useState(produto?.preco?.toString() || '');
+    const [imagem, setImagem] = useState(produto?.imagem || null);
+    const [erros, setErros] = useState([]);
 
     const escolherImagem = async () => {
         const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -31,17 +32,19 @@ const CadastrarProdutoView = ({ navigation }) => {
         }
     };
 
-    const salvarProduto = () => {        
+
+    const atualizarProduto = () => {
         const errosEncontrados = validateProduto();
 
-        if(errosEncontrados.length > 0){
+        if (errosEncontrados.length > 0) {
             setErros(errosEncontrados);
             return;
         }
 
         setErros([]);
 
-        const novoProduto = {
+        const produtoAtualizado = {
+            ...produto,
             nome,
             descricao,
             preco,
@@ -53,7 +56,15 @@ const CadastrarProdutoView = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.titulo}>Cadastrar Produto</Text>
+            <Text style={styles.titulo}>Editar Produto</Text>
+
+            {erros.length > 0 && (
+                <View style={{ marginBottom: 10 }}>
+                    {erros.map((erro, index) => (
+                        <Text key={index} style={{ color: 'red' }}>• {erro}</Text>
+                    ))}
+                </View>
+            )}
 
             <TextInput
                 placeholder="Nome da camisa"
@@ -84,19 +95,10 @@ const CadastrarProdutoView = ({ navigation }) => {
 
             {imagem && <Image source={{ uri: imagem }} style={styles.preview} />}
 
-            <Button title="Salvar Produto" onPress={salvarProduto} />
-
-            {erros.length > 0 && (
-                <View style={{ marginBottom: 10 }}>
-                    {erros.map((erro, index) => (
-                        <Text key={index} style={{ color: 'red' }}>• {erro}</Text>
-                    ))}
-                </View>
-            )}
-
+            <Button title="Salvar Alterações" onPress={atualizarProduto} />
         </View>
     );
-}
+};
 
 const styles = StyleSheet.create({
     container: { padding: 20 },
@@ -115,13 +117,12 @@ const styles = StyleSheet.create({
 });
 
 const validateProduto = () => {
-    let errors = [];
+    const errors = [];
     if (nome.trim() === '') errors.push('Nome é obrigatório.');
     if (descricao.trim() === '') errors.push('Descrição é obrigatória.');
     if (preco.trim() === '' || isNaN(preco)) errors.push('Preço inválido.');
-    if (imagem === null) errors.push('Imagem é obrigatória.');
-
+    if (!imagem) errors.push('Imagem é obrigatória.');
     return errors;
-}
+};
 
-export default CadastrarProdutoView;
+export default AdminEditarCamisaView;

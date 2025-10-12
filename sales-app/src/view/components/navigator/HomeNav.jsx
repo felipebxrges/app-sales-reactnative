@@ -2,12 +2,13 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import HomeView from '../../HomeView';
 import PerfilView from '../../PerfilView';
-import SuporteView from '../../SuporteView';
 import { useAuth } from '../authProvider/AuthProvider';
+import { CarrinhoView } from '../../CarrinhoView';
+import CamisasView from '../../CamisasView';
 import AdminView from '../../AdminView';
-import AdminJogos from '../../admin/AdminJogos';
+import AdminCadastrarCamisaView from '../../AdminCadastrarCamisaView';
+import AdminEditarCamisaView from '../../AdminEditarCamisaView';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -64,9 +65,9 @@ function AdminStack() {
         headerTintColor: "#E2E8F0",
       }}
     >
-      <Stack.Screen name="AdminProdutos" component={AdminProdutosView} options={{ title: "Meus produtos" }} />
-      <Stack.Screen name="CadastrarProduto" component={AdminJogos} options={{ title: "Cadastrar produto" }} />
-      <Stack.Screen name="EditarProduto" component={AdminJogos} options={{ title: "Editar produto" }} />
+      <Stack.Screen name="AdminProdutos" component={AdminView} options={{ title: "Meus produtos" }} />
+      <Stack.Screen name="CadastrarProduto" component={AdminCadastrarCamisaView} options={{ title: "Cadastrar produto" }} />
+      <Stack.Screen name="EditarProduto" component={AdminEditarCamisaView} options={{ title: "Editar produto" }} />
     </Stack.Navigator>
   );
 }
