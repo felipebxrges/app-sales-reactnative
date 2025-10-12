@@ -13,11 +13,11 @@ const AuthProvider = ({children}) =>{
 
     const login = (email, senha)=>{
         if (email == 'admin' && senha == 'admin1'){
-            setLogado({nome: 'clientAdmin', saldo: 500, tipo: 'admin'})
+            setLogado({nome: 'felipe admin', saldo: 1500, tipo: 'admin'})
             return true
         }
         if (email == 'user' && senha == 'user1'){
-            setLogado({nome: 'clientUser', saldo: 500, tipo: 'user'})
+            setLogado({nome: 'felipe user', saldo: 500, tipo: 'user'})
             return true
         }
         setLogado(null)

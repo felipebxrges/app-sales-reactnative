@@ -4,10 +4,9 @@ import { Ionicons } from '@expo/vector-icons';
 import { useAuth } from './components/authProvider/AuthProvider';
 
 const PerfilView = ({ navigation }) => {
-  const { logado, setLogado } = useAuth();
+  const { logado } = useAuth();
 
   const logout = () => {
-    setLogado(null);
     navigation.replace('Login');
   }
 

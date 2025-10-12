@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, FlatList, Image, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import DetalhesCamisa from './components/DetalhesCamisa';
+import { useCarrinho } from './components/carrinhoProvider/CarrinhoProvider'
 
 const camisas = [
     {
@@ -26,13 +27,9 @@ const camisas = [
 
 const CamisasView = () => {
     const [busca, setBusca] = useState('');
-    const [carrinho, setCarrinho] = useState([]);
     const [produtoSelecionado, setProdutoSelecionado] = useState(null);
 
-    const adicionarAoCarrinho = (produto) => {
-        setCarrinho([...carrinho, produto]);
-        Alert.alert('Produto adicionado', `${produto.nome} foi adicionado ao carrinho.`);
-    };
+    const { adicionarAoCarrinho } = useCarrinho();
 
     const camisasFiltradas = camisas.filter((camisa) =>
         camisa.nome.toLowerCase().includes(busca.toLowerCase())
