@@ -73,7 +73,7 @@ function AdminStack() {
 
 const HomeNav = () => {
 
-  const { logado} = useAuth()
+  const { logado } = useAuth()
 
   return (
     <Tab.Navigator
