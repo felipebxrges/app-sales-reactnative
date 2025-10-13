@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useContext ,useState } from 'react';
 
 const CarrinhoContext = createContext();
 
@@ -25,4 +25,4 @@ const CarrinhoProvider = ({children})=>{
     )
 }
 
-export default {CarrinhoProvider, useCarrinho};
+export {CarrinhoProvider, useCarrinho};

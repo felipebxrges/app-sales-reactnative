@@ -31,10 +31,20 @@ const AdminCadastrarCamisaVeiw = ({ navigation }) => {
         }
     };
 
-    const salvarProduto = () => {        
+    const validateProduto = () => {
+        let errors = [];
+        if (nome.trim() === '') errors.push('Nome é obrigatório.');
+        if (descricao.trim() === '') errors.push('Descrição é obrigatória.');
+        if (preco.trim() === '' || isNaN(preco)) errors.push('Preço inválido.');
+        if (imagem === null) errors.push('Imagem é obrigatória.');
+
+        return errors;
+    }
+
+    const salvarProduto = () => {
         const errosEncontrados = validateProduto();
 
-        if(errosEncontrados.length > 0){
+        if (errosEncontrados.length > 0) {
             setErros(errosEncontrados);
             return;
         }
@@ -113,15 +123,5 @@ const styles = StyleSheet.create({
     textoBotaoImagem: { color: '#fff', marginLeft: 10 },
     preview: { width: '100%', height: 200, marginBottom: 10, borderRadius: 10 },
 });
-
-const validateProduto = () => {
-    let errors = [];
-    if (nome.trim() === '') errors.push('Nome é obrigatório.');
-    if (descricao.trim() === '') errors.push('Descrição é obrigatória.');
-    if (preco.trim() === '' || isNaN(preco)) errors.push('Preço inválido.');
-    if (imagem === null) errors.push('Imagem é obrigatória.');
-
-    return errors;
-}
 
 export default AdminCadastrarCamisaVeiw;

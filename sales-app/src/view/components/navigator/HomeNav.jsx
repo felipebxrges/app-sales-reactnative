@@ -9,22 +9,26 @@ import CamisasView from '../../CamisasView';
 import AdminView from '../../AdminView';
 import AdminCadastrarCamisaView from '../../AdminCadastrarCamisaView';
 import AdminEditarCamisaView from '../../AdminEditarCamisaView';
+import { CarrinhoProvider } from '../carrinhoProvider/CarrinhoProvider';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
 function CamisasStack() {
   return (
-    <Stack.Navigator
-      screenOptions={{
-        headerStyle: { backgroundColor: '#101826' },
-        headerTitleStyle: { color: '#E2E8F0' },
-        headerTintColor: '#E2E8F0',
-      }}
-    >
-      <Stack.Screen name="CamisasStack" component={CamisasView} options={{ title: 'Camisas' }} />
-      
-    </Stack.Navigator>
+    <CarrinhoProvider>
+      <Stack.Navigator
+        screenOptions={{
+          headerStyle: { backgroundColor: '#101826' },
+          headerTitleStyle: { color: '#E2E8F0' },
+          headerTintColor: '#E2E8F0',
+        }}
+      >
+        <Stack.Screen name="CamisasStack" component={CamisasView} options={{ title: 'Camisas' }} />
+
+      </Stack.Navigator>
+    </CarrinhoProvider>
+
   );
 }
 
@@ -44,15 +48,17 @@ function ContaStack() {
 
 function CarrinhoStack() {
   return (
-    <Stack.Navigator
-      screenOptions={{
-        headerStyle: { backgroundColor: '#101826' },
-        headerTitleStyle: { color: '#E2E8F0' },
-        headerTintColor: '#E2E8F0',
-      }}
-    >
-      <Stack.Screen name="CarrinhoStack" component={CarrinhoView} options={{ title: 'Carrinho' }} />
-    </Stack.Navigator>
+    <CarrinhoProvider>
+      <Stack.Navigator
+        screenOptions={{
+          headerStyle: { backgroundColor: '#101826' },
+          headerTitleStyle: { color: '#E2E8F0' },
+          headerTintColor: '#E2E8F0',
+        }}
+      >
+        <Stack.Screen name="CarrinhoStack" component={CarrinhoView} options={{ title: 'Carrinho' }} />
+      </Stack.Navigator>
+    </CarrinhoProvider>
   );
 }
 
