@@ -12,12 +12,12 @@ const AuthProvider = ({children}) =>{
     const [nome, setNome] = useState("felipe")
 
     const login = (email, senha)=>{
-        if (email == 'admin' && senha == 'admin1'){
-            setLogado({nome: 'felipe admin', saldo: 1500, tipo: 'admin'})
+        if (email == '' && senha == ''){
+            setLogado({nome: '', saldo: 1500, tipo: ''})
             return true
         }
-        if (email == 'user' && senha == 'user1'){
-            setLogado({nome: 'felipe user', saldo: 500, tipo: 'user'})
+        if (email == '' && senha == ''){
+            setLogado({nome: '', saldo: 500, tipo: ''})
             return true
         }
         setLogado(null)
