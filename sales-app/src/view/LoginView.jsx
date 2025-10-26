@@ -22,10 +22,10 @@ const LoginView = ( {navigation} )=>{
         return ()=> clearTimeout(id)
     },[showSnack])
 
-    const handleLogin = ()=>{
+    const handleLogin = async ()=>{
       Keyboard.dismiss()
       console.log(campos)
-      if (login(campos.email, campos.senha)){
+      if (await login(campos.email, campos.senha)){
           navigation.replace('AppTabs')
       }else{
         setCampos( {email: '',senha: ''} )

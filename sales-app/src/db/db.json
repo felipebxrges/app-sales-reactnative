@@ -1,13 +1,13 @@
 {
   "users": [
-    { "id": 1, "nome": "felipe user", "login": "felipeuser", "senha": "user", "admin": false },
-    { "id": 2, "nome": "feliper admin", "login": "felipeadmin", "senha": "admin", "admin": true }
+    { "id": 1, "nome": "felipe user", "login": "felipeuser", "saldo":500.0, "senha": "user", "image": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fpngimg.com%2Fimage%2F109339&psig=AOvVaw3mrzHy8gesNmUOFY6iV9oy&ust=1761583578984000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCOCEva2owpADFQAAAAAdAAAAABAE", "admin": false },
+    { "id": 2, "nome": "feliper admin", "login": "felipeadmin","saldo":1500.0, "senha": "admin", "image": "", "admin": true }
   ],
 
   "camisas": [
-    { "id": 1, "nome": "Camisa do Brasil", "preco": 129.9, "imagem": "https://link-da-imagem.com/camisa1.png" },
-    { "id": 2, "nome": "Camisa da Argentina", "preco": 119.9, "imagem": "https://link-da-imagem.com/camisa2.png" },
-    { "id": 3, "nome": "Camisa da França", "preco": 139.9, "imagem": "https://link-da-imagem.com/camisa3.png" }
+    { "id": 1, "nome": "Camisa do Brasil", "preco": 129.9, "imagem": "https://link-da-imagem.com/camisa1.png", "idAdmin": 2 },
+    { "id": 2, "nome": "Camisa da Argentina", "preco": 119.9, "imagem": "https://link-da-imagem.com/camisa2.png", "idAdmin": 2 },
+    { "id": 3, "nome": "Camisa da França", "preco": 139.9, "imagem": "https://link-da-imagem.com/camisa3.png", "idAdmin": 2 }
   ],
 
   "carrinhos": [

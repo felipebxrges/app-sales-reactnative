@@ -103,7 +103,7 @@ const HomeNav = () => {
       <Tab.Screen name="Camisas" component={CamisasStack} />
       <Tab.Screen name="Carrinho" component={CarrinhoStack} />
       <Tab.Screen name="Conta" component={ContaStack} />
-      {logado.tipo === "admin" && (
+      {logado?.admin && (
         <Tab.Screen name="Admin" component={AdminStack} />
       )}
     </Tab.Navigator>

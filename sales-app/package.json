@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "dbstart": "json-server --watch src/db/db.json --port 3000",
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
@@ -27,5 +28,8 @@
     "react-native-screens": "~4.16.0",
     "react-native-vector-icons": "~10.3.0"
   },
-  "private": true
+  "private": true,
+  "devDependencies": {
+    "json-server": "^1.0.0-beta.3"
+  }
 }
