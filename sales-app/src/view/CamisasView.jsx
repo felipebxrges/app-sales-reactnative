@@ -1,39 +1,49 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, TextInput, FlatList, Image, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import DetalhesCamisa from './components/DetalhesCamisa';
-import { useCarrinho } from './components/carrinhoProvider/CarrinhoProvider'
-
-const camisas = [
-    {
-        id: '1',
-        nome: 'Camisa Naruto',
-        preco: '49',
-        imagem: '',
-    },
-    {
-        id: '2',
-        nome: 'Camisa One Piece',
-        preco: '59',
-        imagem: '',
-    },
-    {
-        id: '3',
-        nome: 'Camisa HxH',
-        preco: '39',
-        imagem: '',
-    },
-];
+import { useCarrinho } from './components/carrinhoProvider/CarrinhoProvider';
+import { useAuth } from './components/authProvider/AuthProvider';
 
 const CamisasView = () => {
     const [busca, setBusca] = useState('');
     const [produtoSelecionado, setProdutoSelecionado] = useState(null);
+    const [camisas, setCamisas] = useState([]);
 
+    const {logado} = useAuth();
     const { adicionarAoCarrinho } = useCarrinho();
 
     const camisasFiltradas = camisas.filter((camisa) =>
         camisa.nome.toLowerCase().includes(busca.toLowerCase())
     );
+
+    useEffect(() => {
+        var fetchCamisas = async () => {
+            try {
+                var url = "";
+                if(logado.admin)
+                    url = 'http://192.168.2.180:3000/camisas?idAdmin_ne='+logado.id;
+                else
+                    url = 'http://192.168.2.180:3000/camisas';
+
+                var data = await fetch(url);
+
+                if (data.status !== 200) {
+                    throw new Error("Erro na requisição")
+                }
+
+                var json = await data.json();
+
+                setCamisas(json);
+            }
+            catch (error) {
+                console.log(error.message)
+                setCamisas([]);
+            }
+        };
+
+        fetchCamisas();
+    }, []);
 
     return (
         <View style={styles.container}>
@@ -70,7 +80,7 @@ const CamisasView = () => {
                 )}
                 ListEmptyComponent={<Text style={styles.nenhumResultado}>Nenhuma camisa encontrada.</Text>}
             />
-            
+
             {produtoSelecionado && (
                 <DetalhesCamisa
                     produto={produtoSelecionado}
