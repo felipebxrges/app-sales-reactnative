@@ -1,0 +1,23 @@
+{
+  "users": [
+    { "id": 1, "nome": "felipe user", "login": "felipeuser", "senha": "user", "admin": false },
+    { "id": 2, "nome": "feliper admin", "login": "felipeadmin", "senha": "admin", "admin": true }
+  ],
+
+  "camisas": [
+    { "id": 1, "nome": "Camisa do Brasil", "preco": 129.9, "imagem": "https://link-da-imagem.com/camisa1.png" },
+    { "id": 2, "nome": "Camisa da Argentina", "preco": 119.9, "imagem": "https://link-da-imagem.com/camisa2.png" },
+    { "id": 3, "nome": "Camisa da França", "preco": 139.9, "imagem": "https://link-da-imagem.com/camisa3.png" }
+  ],
+
+  "carrinhos": [
+    { "id": 1, "usuarioId": 1 },
+    { "id": 2, "usuarioId": 2 }
+  ],
+
+  "itensCarrinho": [
+    { "id": 1, "carrinhoId": 1, "camisaId": 1, "quantidade": 2 },
+    { "id": 2, "carrinhoId": 1, "camisaId": 2, "quantidade": 1 },
+    { "id": 3, "carrinhoId": 2, "camisaId": 3, "quantidade": 1 }
+  ]
+}
