@@ -11,6 +11,7 @@ const CarrinhoView = () => {
     const total = carrinho.reduce((acc, item) => acc + parseFloat(item.preco), 0);
 
     const handleRemover = (item) => {
+        console.log(item);
         Alert.alert(
             'Remover Item',
             `Deseja remover ${item.nome} do carrinho?`,
@@ -38,6 +39,8 @@ const CarrinhoView = () => {
                         <Image source={{ uri: item.imagem || '' }} style={styles.imagem} />
                         <Text style={styles.nome}>{item.nome}</Text>
                         <Text style={styles.preco}>R$ {item.preco}</Text>
+                        <Text style={styles.quantidade}>Quantidade: {item.quantidade}</Text>
+
                         <TouchableOpacity
                             style={styles.botaoExcluir}
                             onPress={() => handleRemover(item)}
@@ -54,7 +57,7 @@ const CarrinhoView = () => {
             {carrinho.length > 0 && (
                 <View style={styles.totalContainer}>
                     {carrinho.map((item, index) => (
-                        <Text key={index} style={styles.totalItem}>
+                        <Text key={index} style={styles.totalTexto}>
                             {item.nome}: R$ {parseFloat(item.preco).toFixed(2)}
                         </Text>
                     ))}
@@ -104,7 +107,10 @@ const styles = StyleSheet.create({
     preco: {
         fontSize: 14,
         color: 'green',
-        marginBottom: 10,
+    },
+    quantidade: {
+        fontSize: 14,
+        color: '#333',
     },
     botaoExcluir: {
         position: 'absolute',
@@ -123,7 +129,7 @@ const styles = StyleSheet.create({
     totalContainer: {
         marginTop: 20,
         padding: 15,
-        backgroundColor: '#101826',
+        backgroundColor: '#29374eff',
         borderRadius: 8,
         alignItems: 'center',
     },
