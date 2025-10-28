@@ -26,34 +26,6 @@
       "preco": 129.9,
       "imagem": "https://link-da-imagem.com/camisa1.png",
       "idAdmin": 2
-    },
-    {
-      "id": "2",
-      "nome": "Camisa da Argentina",
-      "preco": 119.9,
-      "imagem": "https://link-da-imagem.com/camisa2.png",
-      "idAdmin": 2
-    },
-    {
-      "id": "3",
-      "nome": "Camisa da França",
-      "preco": 140,
-      "imagem": "https://link-da-imagem.com/camisa3.png",
-      "idAdmin": 2
-    },
-    {
-      "id": "c56e",
-      "nome": "teste 3",
-      "preco": 125,
-      "imagem": "file:///data/user/0/host.exp.exponent/cache/ImagePicker/76e85e12-be60-4f34-8ca2-6726c45a4437.jpeg",
-      "idAdmin": 2
-    },
-    {
-      "id": "a9d2",
-      "nome": "fbfb",
-      "preco": 2,
-      "imagem": "file:///data/user/0/host.exp.exponent/cache/ImagePicker/942badb9-3515-4365-8dcf-5c2ca25edf5e.jpeg",
-      "idAdmin": 2
     }
   ],
   "carrinhos": [
