@@ -29,6 +29,6 @@ export const CarrinhoRepository = {
     },
 
     async RemoveItemDoCarrinho(itemId) {
-        await fetch(`http://192.168.2.180:3000/itensCarrinho/${itemId}`, { method: "DELETE" })
+         return await fetch(`http://192.168.2.180:3000/itensCarrinho/${itemId}`, { method: "DELETE" })
     }
 }

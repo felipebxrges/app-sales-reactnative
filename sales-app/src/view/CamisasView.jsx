@@ -61,7 +61,7 @@ const CamisasView = ({ navigation }) => {
             {states.produtoSelecionado && (
                 <DetalhesCamisa
                     produto={states.produtoSelecionado}
-                    onFechar={() => setProdutoSelecionado(null)}
+                    onFechar={() => actions.setProdutoSelecionado(null)}
                 />
             )}
 

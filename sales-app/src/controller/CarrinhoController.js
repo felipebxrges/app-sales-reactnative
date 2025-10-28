@@ -25,7 +25,7 @@ export const useCarrinhoController = () => {
                     const resCamisa = await CamisaRepository.getCamisaById(item.camisaId);
                     const camisaJson = await resCamisa.json();
 
-                    var camisa = new Camisa(camisaJson.id, camisaJson.nome, camisaJson.preco, camisaJson.imagem, camisaJson.idAdmin);
+                    var camisa = new Camisa(camisaJson.id, camisaJson.nome, parseFloat(camisaJson.preco), camisaJson.imagem, camisaJson.idAdmin);
 
                     return new ItemCarrinho(item.id, logado.id, camisa, item.quantidade);
                 })
@@ -39,42 +39,43 @@ export const useCarrinhoController = () => {
         }
     }
 
-    const adicionarAoCarrinho = async (produto, setCarrinho, carrinho) => {
-        let idItemJaExiste;
-        let quantidadeAtual;
-
+    const adicionarAoCarrinho = async (produto) => {
+        
         const existe = carrinho.find((i) => i.camisa.id === produto.id);
 
         if (existe) {
-            setCarrinho((prev) => {
-                idItemJaExiste = existe.id;
-                quantidadeAtual = existe.quantidade;
-                return prev.map((i) =>
-                    i.id === produto.id ? { ...i, quantidade: i.quantidade + 1 } : i
-                );
-            });
-        } else {
-            setCarrinho((prev) => [...prev, { ...produto, quantidade: 1 }]);
-        }
+            setCarrinho((prev) =>
+                prev.map((i) =>
+                    i.camisa.id === produto.id
+                        ? new ItemCarrinho(i.id, i.carrinhoId, i.camisa, i.quantidade + 1)
+                        : i
+                )
+            );
 
-        try {
-            if (idItemJaExiste) {
-                const res = await CarrinhoRepository.AtualizaQuantidadeItemNoCarrinho(idItemJaExiste, quantidadeAtual + 1);
-                
+            try {
+                const res = await CarrinhoRepository.AtualizaQuantidadeItemCarrinho(existe.id, existe.quantidade + 1);
                 if (!res.ok) throw new Error("Erro ao atualizar quantidade");
-            } else {
-                const res = await CarrinhoRepository.AdicionaItemAoCarrinho(logado.id, produto.id);
-                
-                if (!res.ok) throw new Error("Erro ao adicionar item");
+            } catch (err) {
+                console.log(err);
             }
-        } catch (err) {
-            console.log(err);
+        } else {
+       
+            try {
+                const res = await CarrinhoRepository.AdicionaItemAoCarrinho(logado.id, produto.id);
+                if (!res.ok) throw new Error("Erro ao adicionar item");
+                const json = await res.json(); 
+
+                const novoItem = new ItemCarrinho(json.id, logado.id, produto, 1);
+                setCarrinho((prev) => [...prev, novoItem]);
+            } catch (err) {
+                console.log(err);
+            }
         }
     };
 
-    const removerDoCarrinho = async (produtoId, setCarrinho, carrinho) => {
+    const removerDoCarrinho = async (produtoId) => {
         const existente = carrinho.find((i) => i.id === produtoId);
-
+        console.log(existente);
         if (!existente) return;
 
         if (existente.quantidade > 1) {
@@ -86,8 +87,9 @@ export const useCarrinhoController = () => {
                 setCarrinho((prev) =>
                     prev.map((i) =>
                         i.id === existente.id
-                            ? { ...i, quantidade: i.quantidade - 1 }
+                            ? new ItemCarrinho(i.id, i.carrinhoId, i.camisa, i.quantidade - 1)
                             : i
+
                     )
                 );
             } catch (err) {
@@ -96,9 +98,9 @@ export const useCarrinhoController = () => {
         } else {
             try {
                 var res = await CarrinhoRepository.RemoveItemDoCarrinho(existente.id);
-                
+
                 if (!res.ok) throw new Error("Erro ao remover item");
-                
+
                 setCarrinho((prev) => prev.filter((i) => i.id !== existente.id));
             } catch (err) {
                 console.log(err);

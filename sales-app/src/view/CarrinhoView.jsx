@@ -36,9 +36,9 @@ const CarrinhoView = () => {
                 numColumns={2}
                 renderItem={({ item }) => (
                     <View style={styles.card}>
-                        <Image source={{ uri: item.imagem || '' }} style={styles.imagem} />
-                        <Text style={styles.nome}>{item.nome}</Text>
-                        <Text style={styles.preco}>R$ {item.preco}</Text>
+                        <Image source={{ uri: item.camisa.imagem || '' }} style={styles.imagem} />
+                        <Text style={styles.nome}>{item.camisa.nome}</Text>
+                        <Text style={styles.preco}>R$ {item.camisa.preco}</Text>
                         <Text style={styles.quantidade}>Quantidade: {item.quantidade}</Text>
 
                         <TouchableOpacity
@@ -58,14 +58,14 @@ const CarrinhoView = () => {
                 <View style={styles.totalContainer}>
                     {carrinho.map((item, index) => (
                         <Text key={index} style={styles.totalTexto}>
-                            {item.nome}: R$ {parseFloat(item.preco).toFixed(2)}
+                            {item.camisa.nome}: R$ {parseFloat(item.camisa.preco).toFixed(2)} x {item.quantidade}
                         </Text>
                     ))}
 
                     <View style={styles.linhaSeparadora} />
 
                     <Text style={styles.totalTexto}>
-                        Total: R$ {carrinho.reduce((acc, item) => acc + parseFloat(item.preco), 0).toFixed(2)}
+                        Total: R$ {carrinho.reduce((acc, item) => acc + parseFloat(item.getTotal()), 0).toFixed(2)}
                     </Text>
                 </View>
             )}

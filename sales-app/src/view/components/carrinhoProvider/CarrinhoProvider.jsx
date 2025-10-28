@@ -14,11 +14,11 @@ const CarrinhoProvider = ({ children }) => {
     const { logado } = useAuth();
 
     useEffect(() => {
-        actions.fetchCarrinho;
+        actions.fetchCarrinho();
     }, [logado])
 
     return (
-        <CarrinhoContext.Provider value={{ carrinho: states.carrinho, adicionarAoCarrinho: states.adicionarAoCarrinho, removerDoCarrinho: states.removerDoCarrinho }}>
+        <CarrinhoContext.Provider value={{ carrinho: states.carrinho, adicionarAoCarrinho: actions.adicionarAoCarrinho, removerDoCarrinho: actions.removerDoCarrinho }}>
             {children}
         </CarrinhoContext.Provider>
     )
