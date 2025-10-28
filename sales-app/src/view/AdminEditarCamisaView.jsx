@@ -2,15 +2,19 @@ import React, { useState, useEffect } from 'react';
 import { View, TextInput, Button, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import { Ionicons } from '@expo/vector-icons';
+import { useContext } from 'react';
+import { useAdminCamisas } from './components/adminContext/AdminCamisasProvider';
+import Camisa from '../model/camisa';
 
 const AdminEditarCamisaView = ({ route, navigation }) => {
     const { produto } = route.params;
 
     const [nome, setNome] = useState(produto?.nome || '');
-    const [descricao, setDescricao] = useState(produto?.descricao || '');
     const [preco, setPreco] = useState(produto?.preco?.toString() || '');
     const [imagem, setImagem] = useState(produto?.imagem || null);
     const [erros, setErros] = useState([]);
+
+    const { atualizarCamisa } = useAdminCamisas();
 
     const escolherImagem = async () => {
         const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -35,14 +39,13 @@ const AdminEditarCamisaView = ({ route, navigation }) => {
     const validateProduto = () => {
         let errors = [];
         if (nome.trim() === '') errors.push('Nome é obrigatório.');
-        if (descricao.trim() === '') errors.push('Descrição é obrigatória.');
         if (preco.trim() === '' || isNaN(preco)) errors.push('Preço inválido.');
         if (imagem === null) errors.push('Imagem é obrigatória.');
 
         return errors;
     }
 
-    const atualizarProduto = () => {
+    const salvarAtualizacao = async () => {
         const errosEncontrados = validateProduto();
 
         if (errosEncontrados.length > 0) {
@@ -52,13 +55,9 @@ const AdminEditarCamisaView = ({ route, navigation }) => {
 
         setErros([]);
 
-        const produtoAtualizado = {
-            ...produto,
-            nome,
-            descricao,
-            preco,
-            imagem,
-        };
+        const produtoAtualizado = new Camisa(produto.id, nome, parseFloat(preco), imagem, parseInt(produto.idAdmin));
+
+        await atualizarCamisa(produtoAtualizado);
 
         navigation.goBack();
     };
@@ -83,13 +82,6 @@ const AdminEditarCamisaView = ({ route, navigation }) => {
             />
 
             <TextInput
-                placeholder="Descrição"
-                style={styles.input}
-                value={descricao}
-                onChangeText={setDescricao}
-            />
-
-            <TextInput
                 placeholder="Preço"
                 style={styles.input}
                 keyboardType="decimal-pad"
@@ -104,7 +96,7 @@ const AdminEditarCamisaView = ({ route, navigation }) => {
 
             {imagem && <Image source={{ uri: imagem }} style={styles.preview} />}
 
-            <Button title="Salvar Alterações" onPress={atualizarProduto} />
+            <Button title="Salvar Alterações" onPress={salvarAtualizacao} />
         </View>
     );
 };

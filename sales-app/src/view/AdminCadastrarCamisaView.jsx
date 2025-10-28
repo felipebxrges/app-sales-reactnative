@@ -2,14 +2,19 @@ import React, { useState } from 'react';
 import { View, TextInput, Button, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import { Ionicons } from '@expo/vector-icons';
+import Camisa from '../model/camisa';
+import { useContext } from 'react';
+import { useAdminCamisas } from './components/adminContext/AdminCamisasProvider';
+import { useAuth } from './components/authProvider/AuthProvider';
 
 const AdminCadastrarCamisaVeiw = ({ navigation }) => {
     const [nome, setNome] = useState('');
-    const [descricao, setDescricao] = useState('');
     const [preco, setPreco] = useState('');
     const [imagem, setImagem] = useState(null);
     const [erros, setErros] = useState([]);
 
+    const {logado} = useAuth();
+    const { adicionarCamisa } = useAdminCamisas();
 
     const escolherImagem = async () => {
         const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -34,14 +39,13 @@ const AdminCadastrarCamisaVeiw = ({ navigation }) => {
     const validateProduto = () => {
         let errors = [];
         if (nome.trim() === '') errors.push('Nome é obrigatório.');
-        if (descricao.trim() === '') errors.push('Descrição é obrigatória.');
         if (preco.trim() === '' || isNaN(preco)) errors.push('Preço inválido.');
         if (imagem === null) errors.push('Imagem é obrigatória.');
 
         return errors;
     }
 
-    const salvarProduto = () => {
+    const salvarProduto = async () => {
         const errosEncontrados = validateProduto();
 
         if (errosEncontrados.length > 0) {
@@ -51,12 +55,9 @@ const AdminCadastrarCamisaVeiw = ({ navigation }) => {
 
         setErros([]);
 
-        const novoProduto = {
-            nome,
-            descricao,
-            preco,
-            imagem,
-        };
+        const novaCamisa = new Camisa(undefined, nome, parseFloat(preco), imagem, parseInt(logado.id));
+
+        await adicionarCamisa(novaCamisa);
 
         navigation.goBack();
     };
@@ -70,13 +71,6 @@ const AdminCadastrarCamisaVeiw = ({ navigation }) => {
                 style={styles.input}
                 value={nome}
                 onChangeText={setNome}
-            />
-
-            <TextInput
-                placeholder="Descrição"
-                style={styles.input}
-                value={descricao}
-                onChangeText={setDescricao}
             />
 
             <TextInput

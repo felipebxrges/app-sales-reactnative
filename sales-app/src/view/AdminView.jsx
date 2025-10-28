@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   View,
   Text,
@@ -10,23 +10,13 @@ import {
 } from 'react-native';
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+import { useContext } from 'react';
+import { useAdminCamisas } from './components/adminContext/AdminCamisasProvider';
+import { useAuth } from './components/authProvider/AuthProvider';
 
-const camisasDoAdmin = [
-  {
-    id: '1',
-    nome: 'Camisa Naruto',
-    preco: '49.90',
-    imagem: '',
-  },
-  {
-    id: '2',
-    nome: 'Camisa One Piece',
-    preco: '59.90',
-    imagem: '',
-  },
-];
+const AdminView = ({ navigation }) => {
 
-const AdminView = ({navigation}) => {
+  const { camisasDoAdmin, removerCamisa } = useAdminCamisas();
 
   const handleExcluir = (id) => {
     Alert.alert(
@@ -34,7 +24,7 @@ const AdminView = ({navigation}) => {
       'Tem certeza que deseja excluir esta camisa?',
       [
         { text: 'Cancelar', style: 'cancel' },
-        { text: 'Excluir', style: 'destructive', onPress: () => console.log('Excluir ID:', id) },
+        { text: 'Excluir', style: 'destructive', onPress: () => removerCamisa(id) },
       ]
     );
   };
