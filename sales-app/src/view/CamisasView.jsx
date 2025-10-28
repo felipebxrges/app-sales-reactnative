@@ -1,55 +1,27 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { use, useCallback, useEffect, useState } from 'react';
 import { View, Text, TextInput, FlatList, Image, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import DetalhesCamisa from './components/DetalhesCamisa';
 import { useCarrinho } from './components/carrinhoProvider/CarrinhoProvider';
 import { useAuth } from './components/authProvider/AuthProvider';
 import { useFocusEffect } from '@react-navigation/native';
+import { useCamisaController } from '../controller/CamisaController';
 
 const CamisasView = ({ navigation }) => {
-    const [busca, setBusca] = useState('');
-    const [produtoSelecionado, setProdutoSelecionado] = useState(null);
-    const [camisas, setCamisas] = useState([]);
 
-    const { logado } = useAuth();
+    const { states, actions } = useCamisaController();
+
     const { adicionarAoCarrinho } = useCarrinho();
 
-    const camisasFiltradas = camisas.filter((camisa) =>
-        camisa.nome.toLowerCase().includes(busca.toLowerCase())
+    const camisasFiltradas = states.camisas.filter((camisa) =>
+        camisa.nome.toLowerCase().includes(states.busca.toLowerCase())
     );
-
 
     useFocusEffect(
         useCallback(() => {
-
-            const carregarProdutos = async () => {
-                try {
-                    var url = "";
-                    if (logado.admin)
-                        url = 'http://192.168.2.180:3000/camisas?idAdmin_ne=' + logado.id;
-                    else
-                        url = 'http://192.168.2.180:3000/camisas';
-
-                    var data = await fetch(url);
-
-                    if (data.status !== 200) {
-                        throw new Error("Erro na requisição")
-                    }
-
-                    var json = await data.json();
-
-                    setCamisas(json);
-                }
-                catch (error) {
-                    console.log(error.message)
-                    setCamisas([]);
-                }
-            }
-
-            carregarProdutos();
+            actions.carregarProdutos();
         }, [])
     );
-
     return (
         <View style={styles.container}>
             <Text style={styles.titulo}>Camisas de Anime</Text>
@@ -57,8 +29,8 @@ const CamisasView = ({ navigation }) => {
             <TextInput
                 style={styles.input}
                 placeholder="Buscar camisas..."
-                value={busca}
-                onChangeText={setBusca}
+                value={states.busca}
+                onChangeText={actions.setBusca}
             />
 
             <FlatList
@@ -68,7 +40,7 @@ const CamisasView = ({ navigation }) => {
                 renderItem={({ item }) => (
                     <View style={styles.card}>
                         <TouchableOpacity
-                            onPress={() => setProdutoSelecionado(item)}
+                            onPress={() => actions.setProdutoSelecionado(item)}
                             style={styles.touchableArea}
                         >
                             <Image source={{ uri: item.imagem }} style={styles.imagem} />
@@ -86,9 +58,9 @@ const CamisasView = ({ navigation }) => {
                 ListEmptyComponent={<Text style={styles.nenhumResultado}>Nenhuma camisa encontrada.</Text>}
             />
 
-            {produtoSelecionado && (
+            {states.produtoSelecionado && (
                 <DetalhesCamisa
-                    produto={produtoSelecionado}
+                    produto={states.produtoSelecionado}
                     onFechar={() => setProdutoSelecionado(null)}
                 />
             )}
