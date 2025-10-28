@@ -7,5 +7,9 @@ export const CamisaRepository = {
 
     async getCamisasWhenIsAdmin(logado){
         return await fetch(`${BASE_URL}?idAdmin_ne=${logado.id}`);
+    },
+
+    async getCamisaById(id) {
+        return await fetch(`${BASE_URL}/${id}`);
     }
 }
