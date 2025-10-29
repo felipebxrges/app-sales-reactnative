@@ -40,23 +40,19 @@ export const useCarrinhoController = () => {
     }
 
     const adicionarAoCarrinho = async (produto) => {
-        
+
         const existe = carrinho.find((i) => i.camisa.id === produto.id);
 
         if (existe) {
-            setCarrinho((prev) =>
-                prev.map((i) =>
-                    i.camisa.id === produto.id
-                        ? new ItemCarrinho(i.id, i.carrinhoId, i.camisa, i.quantidade + 1)
-                        : i
-                )
-            );
+
+            existe.incrementar();
+            setCarrinho(...carrinho);
 
             try {
-                const res = await CarrinhoRepository.AtualizaQuantidadeItemCarrinho(existe.id, existe.quantidade + 1);
+                const res = await CarrinhoRepository.AtualizaQuantidadeItemCarrinho(existe.id, existe.quantidade);
                 if (!res.ok) throw new Error("Erro ao atualizar quantidade");
             } catch (err) {
-                console.log(err);
+                console.log(err);                
             }
         } else {
        
@@ -80,18 +76,13 @@ export const useCarrinhoController = () => {
 
         if (existente.quantidade > 1) {
             try {
-                const res = await CarrinhoRepository.AtualizaQuantidadeItemCarrinho(existente.id, existente.quantidade - 1);
+                existente.decrementar();
+                setCarrinho(...carrinho);
+
+                const res = await CarrinhoRepository.AtualizaQuantidadeItemCarrinho(existente.id, existente.quantidade);
 
                 if (!res.ok) throw new Error("Erro ao atualizar quantidade");
 
-                setCarrinho((prev) =>
-                    prev.map((i) =>
-                        i.id === existente.id
-                            ? new ItemCarrinho(i.id, i.carrinhoId, i.camisa, i.quantidade - 1)
-                            : i
-
-                    )
-                );
             } catch (err) {
                 console.log(err);
             }

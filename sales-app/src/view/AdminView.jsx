@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react';
 import {
   View,
   Text,
@@ -9,10 +8,7 @@ import {
   Image,
 } from 'react-native';
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
-import { useContext } from 'react';
 import { useAdminCamisas } from './components/adminContext/AdminCamisasProvider';
-import { useAuth } from './components/authProvider/AuthProvider';
 
 const AdminView = ({ navigation }) => {
 

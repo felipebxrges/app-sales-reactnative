@@ -55,7 +55,7 @@ const AdminCadastrarCamisaVeiw = ({ navigation }) => {
 
         setErros([]);
 
-        const novaCamisa = new Camisa(undefined, nome, parseFloat(preco), imagem, parseInt(logado.id));
+        const novaCamisa = new Camisa(undefined, nome, parseFloat(preco).toFixed(2), imagem, parseInt(logado.id));
 
         await adicionarCamisa(novaCamisa);
 

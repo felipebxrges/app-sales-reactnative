@@ -30,6 +30,8 @@ export const useAdminController = () => {
 
             if (!res.ok) throw new Error('Erro ao cadastrar camisa');
 
+            camisa.id = (await res.json()).id;
+
             setCamisas(prev => [...prev, camisa]);
         }
         catch (error) {

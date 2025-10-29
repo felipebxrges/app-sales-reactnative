@@ -55,7 +55,7 @@ const AdminEditarCamisaView = ({ route, navigation }) => {
 
         setErros([]);
 
-        const produtoAtualizado = new Camisa(produto.id, nome, parseFloat(preco), imagem, parseInt(produto.idAdmin));
+        const produtoAtualizado = new Camisa(produto.id, nome, parseFloat(preco).toFixed(2), imagem, parseInt(produto.idAdmin));
 
         await atualizarCamisa(produtoAtualizado);
 
