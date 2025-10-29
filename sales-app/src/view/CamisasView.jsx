@@ -6,8 +6,12 @@ import { useCarrinho } from './components/carrinhoProvider/CarrinhoProvider';
 import { useAuth } from './components/authProvider/AuthProvider';
 import { useFocusEffect } from '@react-navigation/native';
 import { useCamisaController } from '../controller/CamisaController';
+import { Picker } from '@react-native-picker/picker';
 
-const CamisasView = ({ navigation }) => {
+const CamisasView = () => {
+
+    const [filterCrescente, setFilterCrescente] = useState(false);
+    const [filterDecrescente, setFilterDecrescente] = useState(false);
 
     const { states, actions } = useCamisaController();
 
@@ -17,11 +21,20 @@ const CamisasView = ({ navigation }) => {
         camisa.nome.toLowerCase().includes(states.busca.toLowerCase())
     );
 
+    const camisasFiltradasCrescente = [...camisasFiltradas].sort(
+        (a, b) => parseFloat(a.preco) - parseFloat(b.preco)
+    );
+
+    const camisasFiltradasDecrescente = [...camisasFiltradas].sort(
+        (a, b) => parseFloat(b.preco) - parseFloat(a.preco)
+    );
+
     useFocusEffect(
         useCallback(() => {
             actions.carregarProdutos();
         }, [])
     );
+    
     return (
         <View style={styles.container}>
             <Text style={styles.titulo}>Camisas de Anime</Text>
@@ -33,8 +46,30 @@ const CamisasView = ({ navigation }) => {
                 onChangeText={actions.setBusca}
             />
 
+            <Picker
+                selectedValue={filterCrescente ? "crescente" : filterDecrescente ? "decrescente" : ""}
+                style={{ width: '100%' }}
+                onValueChange={
+                    (value) => {
+                        if (value === "crescente") {
+                            setFilterCrescente(true);
+                            setFilterDecrescente(false);
+                        } else if (value === "decrescente") {
+                            setFilterDecrescente(true);
+                            setFilterCrescente(false);
+                        } else {
+                            setFilterCrescente(false);
+                            setFilterDecrescente(false);
+                        }
+                    }
+                }>
+                <Picker.Item label="Ordenar por preço" value="" />
+                <Picker.Item label="Crescente" value="crescente" />
+                <Picker.Item label="Decrescente" value="decrescente" />
+            </Picker>
+
             <FlatList
-                data={camisasFiltradas}
+                data={filterCrescente ? camisasFiltradasCrescente : filterDecrescente ? camisasFiltradasDecrescente : camisasFiltradas}
                 keyExtractor={(item) => item.id}
                 numColumns={2}
                 renderItem={({ item }) => (
