@@ -46,7 +46,7 @@ export const useCarrinhoController = () => {
         if (existe) {
 
             existe.incrementar();
-            setCarrinho(...carrinho);
+            setCarrinho([...carrinho]);
 
             try {
                 const res = await CarrinhoRepository.AtualizaQuantidadeItemCarrinho(existe.id, existe.quantidade);
@@ -77,7 +77,7 @@ export const useCarrinhoController = () => {
         if (existente.quantidade > 1) {
             try {
                 existente.decrementar();
-                setCarrinho(...carrinho);
+                setCarrinho([...carrinho]);
 
                 const res = await CarrinhoRepository.AtualizaQuantidadeItemCarrinho(existente.id, existente.quantidade);
 
