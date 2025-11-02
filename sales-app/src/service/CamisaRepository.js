@@ -1,4 +1,4 @@
-const BASE_URL = 'http://192.168.2.180:3000/camisas';
+const BASE_URL = 'http://192.168.2.197:3000/camisas';
 
 export const CamisaRepository = {
     async getCamisas() {

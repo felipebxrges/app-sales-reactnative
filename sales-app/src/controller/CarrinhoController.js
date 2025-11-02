@@ -14,6 +14,9 @@ export const useCarrinhoController = () => {
         try {
             var data = await CarrinhoRepository.GetItensDoCarrinho(logado.id);
 
+            console.log(logado.id);
+            console.log(carrinho);
+
             if (data.status !== 200) {
                 throw new Error("Erro na requisição")
             }
@@ -32,6 +35,8 @@ export const useCarrinhoController = () => {
             );
 
             setCarrinho(camisasCompletas);
+            console.log(camisasCompletas);
+            
         }
         catch (error) {
             console.log(error.message)

@@ -26,6 +26,8 @@ const LoginView = ( {navigation} )=>{
       Keyboard.dismiss()
       console.log(campos)
       if (await login(campos.email, campos.senha)){
+        console.log("entrou");
+        
           navigation.replace('AppTabs')
       }else{
         setCampos( {email: '',senha: ''} )
