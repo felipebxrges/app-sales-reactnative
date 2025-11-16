@@ -42,36 +42,46 @@ export default function DetalhesCamisa({ produto, onFechar }) {
 const styles = StyleSheet.create({
     overlay: {
         position: 'absolute',
-        top: 0, left: 0, right: 0, bottom: 0,
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
         backgroundColor: 'rgba(0,0,0,0.5)',
         justifyContent: 'center',
         padding: 20,
     },
+
     container: {
         backgroundColor: '#fff',
         borderRadius: 10,
         padding: 20,
         elevation: 5,
     },
+
     imagem: {
         width: '100%',
         height: 200,
         borderRadius: 8,
+        resizeMode: 'cover',
     },
+
     nome: {
         fontSize: 20,
         fontWeight: 'bold',
         marginTop: 10,
     },
+
     preco: {
         fontSize: 18,
         color: 'green',
         marginTop: 5,
     },
+
     descricao: {
         fontSize: 14,
         marginTop: 10,
     },
+
     botaoFechar: {
         marginTop: 20,
         backgroundColor: '#007bff',
@@ -79,8 +89,10 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         alignItems: 'center',
     },
+
     textoFechar: {
         color: '#fff',
         fontWeight: 'bold',
     },
 });
+
