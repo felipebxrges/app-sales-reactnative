@@ -39,34 +39,40 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 20,
   },
+
   perfilContainer: {
     backgroundColor: '#fff',
     width: '100%',
     borderRadius: 12,
     alignItems: 'center',
     paddingVertical: 30,
+    marginBottom: 30,
     elevation: 4,
     shadowColor: '#000',
     shadowOpacity: 0.1,
     shadowRadius: 5,
     shadowOffset: { width: 0, height: 2 },
-    marginBottom: 30,
   },
+
   avatar: {
     width: 100,
     height: 100,
-    borderRadius: 30, 
+    borderRadius: 30,
     marginBottom: 15,
+    resizeMode: 'cover',
   },
+
   nome: {
     fontSize: 20,
     fontWeight: 'bold',
     marginBottom: 5,
   },
+
   saldo: {
     fontSize: 16,
     color: '#555',
   },
+
   botaoLogout: {
     flexDirection: 'row',
     backgroundColor: '#e63946',
@@ -75,10 +81,12 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     alignItems: 'center',
   },
+
   textoBotao: {
     color: '#fff',
     marginLeft: 8,
     fontSize: 16,
+    fontWeight: '600',
   },
 });
 
