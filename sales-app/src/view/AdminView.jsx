@@ -80,11 +80,13 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     padding: 15,
   },
+
   titulo: {
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 10,
   },
+
   botaoCadastrar: {
     backgroundColor: '#007bff',
     paddingVertical: 12,
@@ -98,19 +100,23 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 16,
   },
+
   card: {
     backgroundColor: '#f1f5f9',
     padding: 15,
     borderRadius: 10,
     marginBottom: 15,
   },
+
   imagem: {
     width: '100%',
     height: 150,
     borderRadius: 8,
     marginBottom: 10,
     backgroundColor: '#ccc',
+    resizeMode: 'cover',
   },
+
   nome: {
     fontSize: 18,
     fontWeight: 'bold',
@@ -120,11 +126,13 @@ const styles = StyleSheet.create({
     color: 'green',
     marginBottom: 10,
   },
+
   botoesAcoes: {
     flexDirection: 'row',
     justifyContent: 'flex-end',
     gap: 10,
   },
+
   botaoEditar: {
     backgroundColor: '#1e40af',
     padding: 8,
@@ -135,6 +143,7 @@ const styles = StyleSheet.create({
     padding: 8,
     borderRadius: 5,
   },
+
   vazio: {
     textAlign: 'center',
     marginTop: 50,
@@ -142,5 +151,6 @@ const styles = StyleSheet.create({
     color: '#888',
   },
 });
+
 
 export default AdminView;

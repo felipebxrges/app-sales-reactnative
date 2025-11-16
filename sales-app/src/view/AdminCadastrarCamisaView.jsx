@@ -102,20 +102,70 @@ const AdminCadastrarCamisaVeiw = ({ navigation }) => {
     );
 }
 
+const COLORS = {
+    primary: '#007bff',
+    white: '#ffffff',
+    border: '#cccccc',
+};
+
+const SPACING = {
+    xs: 4,
+    sm: 8,
+    md: 12,
+    lg: 20,
+};
+
+const RADIUS = {
+    sm: 5,
+    md: 10,
+};
+
+const FONT = {
+    title: 20,
+};
+
 const styles = StyleSheet.create({
-    container: { padding: 20 },
-    titulo: { fontSize: 20, fontWeight: 'bold', marginBottom: 10 },
-    input: { borderBottomWidth: 1, marginBottom: 15, padding: 8 },
+    container: {
+        padding: SPACING.lg,
+    },
+
+    titulo: {
+        fontSize: FONT.title,
+        fontWeight: 'bold',
+        marginBottom: SPACING.md,
+    },
+
+    input: {
+        borderBottomWidth: 1,
+        borderBottomColor: COLORS.border,
+        marginBottom: SPACING.lg - 5,
+        paddingVertical: SPACING.sm,
+        paddingHorizontal: 2,
+    },
+
     botaoImagem: {
         flexDirection: 'row',
-        backgroundColor: '#007bff',
-        padding: 10,
-        borderRadius: 5,
         alignItems: 'center',
-        marginBottom: 10,
+        backgroundColor: COLORS.primary,
+        padding: SPACING.sm * 1.5,
+        borderRadius: RADIUS.sm,
+        marginBottom: SPACING.md,
     },
-    textoBotaoImagem: { color: '#fff', marginLeft: 10 },
-    preview: { width: '100%', height: 200, marginBottom: 10, borderRadius: 10 },
+
+    textoBotaoImagem: {
+        color: COLORS.white,
+        marginLeft: SPACING.sm,
+        fontWeight: '600',
+    },
+
+    preview: {
+        width: '100%',
+        height: 200,
+        marginBottom: SPACING.md,
+        borderRadius: RADIUS.md,
+        resizeMode: 'cover',
+    },
 });
+
 
 export default AdminCadastrarCamisaVeiw;
