@@ -6,7 +6,7 @@
       "login": "felipeuser",
       "saldo": 500,
       "senha": "user",
-      "image": "https://pngimg.com/uploads/naruto/naruto_PNG44.png",
+      "image": "https://wallpapers.com/images/hd/pfp-pictures-djs0u0rzk8mnh3sc.jpg",
       "admin": false
     },
     {
@@ -15,30 +15,23 @@
       "login": "felipeadmin",
       "saldo": 1500,
       "senha": "admin",
-      "image": "",
+      "image": "https://wallpapers.com/images/hd/pfp-pictures-djs0u0rzk8mnh3sc.jpg",
       "admin": true
     }
   ],
   "camisas": [
     {
       "id": "1",
-      "nome": "Camisa do Brasil",
-      "preco": "129.90",
-      "imagem": "https://link-da-imagem.com/camisa1.png",
+      "nome": "Camisa do",
+      "preco": "110.00",
+      "imagem": "https://cdn.awsli.com.br/1839/1839799/arquivos/aqui.png",
       "idAdmin": 2
     },
-        {
+    {
       "id": "2",
-      "nome": "Camisa da Argentina",
+      "nome": "Camisa do Mike",
       "preco": "109.90",
-      "imagem": "https://link-da-imagem.com/camisa1.png",
-      "idAdmin": 2
-    },
-        {
-      "id": "3",
-      "nome": "Camisa da França",
-      "preco": "119.90",
-      "imagem": "https://link-da-imagem.com/camisa1.png",
+      "imagem": "https://cdn.awsli.com.br/500x500/1839/1839799/produto/135586089/4653917eca.jpg",
       "idAdmin": 2
     }
   ],
@@ -54,7 +47,13 @@
   ],
   "itensCarrinho": [
     {
-      "id": "d212",
+      "id": "8d8b",
+      "carrinhoId": "1",
+      "camisaId": "1",
+      "quantidade": 3
+    },
+    {
+      "id": "5e28",
       "carrinhoId": "1",
       "camisaId": null,
       "quantidade": 1
