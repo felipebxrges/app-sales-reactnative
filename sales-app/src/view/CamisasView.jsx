@@ -110,11 +110,13 @@ const styles = StyleSheet.create({
         padding: 15,
         backgroundColor: '#fff',
     },
+
     titulo: {
         fontSize: 24,
         fontWeight: 'bold',
         marginBottom: 10,
     },
+
     input: {
         borderWidth: 1,
         borderColor: '#ccc',
@@ -122,6 +124,7 @@ const styles = StyleSheet.create({
         padding: 10,
         marginBottom: 15,
     },
+
     card: {
         flex: 1,
         backgroundColor: '#f2f2f2',
@@ -130,42 +133,51 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         alignItems: 'center',
     },
+
     imagem: {
         width: '100%',
         height: 120,
         borderRadius: 8,
         marginBottom: 10,
+        resizeMode: 'cover',
     },
+
     nome: {
         fontSize: 16,
         fontWeight: 'bold',
     },
+
     preco: {
         fontSize: 14,
         color: 'green',
         marginBottom: 10,
     },
+
     botao: {
         backgroundColor: '#007bff',
         paddingVertical: 8,
         paddingHorizontal: 12,
         borderRadius: 5,
+        alignItems: 'center',
     },
+
     textoBotao: {
         color: '#fff',
         fontWeight: 'bold',
         fontSize: 14,
     },
+
     nenhumResultado: {
         textAlign: 'center',
         marginTop: 50,
         fontStyle: 'italic',
         color: '#999',
     },
+
     touchableArea: {
         width: '100%',
         alignItems: 'center',
-    }
+    },
 });
 
 export default CamisasView;

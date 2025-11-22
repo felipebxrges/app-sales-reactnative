@@ -79,11 +79,13 @@ const styles = StyleSheet.create({
         padding: 15,
         backgroundColor: '#fff',
     },
+
     titulo: {
         fontSize: 24,
         fontWeight: 'bold',
         marginBottom: 10,
     },
+
     card: {
         flex: 1,
         backgroundColor: '#f2f2f2',
@@ -93,25 +95,31 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         position: 'relative',
     },
+
     imagem: {
         width: '100%',
         height: 120,
         borderRadius: 8,
         marginBottom: 10,
         backgroundColor: '#ddd',
+        resizeMode: 'cover',
     },
+
     nome: {
         fontSize: 16,
         fontWeight: 'bold',
     },
+
     preco: {
         fontSize: 14,
         color: 'green',
     },
+
     quantidade: {
         fontSize: 14,
         color: '#333',
     },
+
     botaoExcluir: {
         position: 'absolute',
         top: 10,
@@ -119,13 +127,17 @@ const styles = StyleSheet.create({
         backgroundColor: '#dc3545',
         padding: 6,
         borderRadius: 5,
+        alignItems: 'center',
+        justifyContent: 'center',
     },
+
     nenhumResultado: {
         textAlign: 'center',
         marginTop: 50,
         fontStyle: 'italic',
         color: '#999',
     },
+
     totalContainer: {
         marginTop: 20,
         padding: 15,
@@ -133,11 +145,13 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         alignItems: 'center',
     },
+
     totalTexto: {
         fontSize: 18,
         color: '#fff',
         fontWeight: 'bold',
     },
 });
+
 
 export { CarrinhoView };
