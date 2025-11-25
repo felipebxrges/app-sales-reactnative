@@ -1,15 +1,15 @@
 
 export const CarrinhoRepository = {
     async GetItensDoCarrinho(carrinhoId) {
-        return await fetch(`http://192.168.2.180:3000/itensCarrinho?carrinhoId=${carrinhoId}`);
+        return await fetch(`http://192.168.2.197:3000/itensCarrinho?carrinhoId=${carrinhoId}`);
     },
 
     async GetItemDoCarrinho(carrinhoId, camisaId) {
-        return await fetch(`http://192.168.2.180:3000/itensCarrinho?carrinhoId=${carrinhoId}&camisaId=${camisaId}`);
+        return await fetch(`http://192.168.2.197:3000/itensCarrinho?carrinhoId=${carrinhoId}&camisaId=${camisaId}`);
     },
 
     async AtualizaQuantidadeItemCarrinho(itemId, novaQuantidade) {
-        return await fetch(`http://192.168.2.180:3000/itensCarrinho/${itemId}`, {
+        return await fetch(`http://192.168.2.197:3000/itensCarrinho/${itemId}`, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ quantidade: novaQuantidade })
@@ -17,7 +17,7 @@ export const CarrinhoRepository = {
     },
 
     async AdicionaItemAoCarrinho(idCarrinho, idCamisa) {
-        return await fetch('http://192.168.2.180:3000/itensCarrinho', {
+        return await fetch('http://192.168.2.197:3000/itensCarrinho', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -29,6 +29,6 @@ export const CarrinhoRepository = {
     },
 
     async RemoveItemDoCarrinho(itemId) {
-         return await fetch(`http://192.168.2.180:3000/itensCarrinho/${itemId}`, { method: "DELETE" })
+         return await fetch(`http://192.168.2.197:3000/itensCarrinho/${itemId}`, { method: "DELETE" })
     }
 }

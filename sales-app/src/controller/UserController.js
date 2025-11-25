@@ -7,7 +7,7 @@ export const UserController = () => {
 
 const login = async (login, senha)=>{
         try{
-            var data = await fetch(`http://192.168.2.180:3000/users?login=${login}&senha=${senha}`);
+            var data = await fetch(`http://192.168.2.197:3000/users?login=${login}&senha=${senha}`);
 
             if(data.status !== 200){
                 throw new Error("Erro na requisição")
@@ -19,10 +19,12 @@ const login = async (login, senha)=>{
                 throw new Error("Usuário não encontrado")
             }
 
-            var user = new User(json[0].id, json[0].nome, json[0].email, json[0].senha, json[0].saldo, json[0].admin);
+            var user = new User(json[0].id, json[0].nome, json[0].email, json[0].senha, json[0].saldo, json[0].admin, json[0].image);
+            console.log(user.image);
+            
 
             setLogado(user)
-            setNome(user.nome)
+            setNome(user.nome)            
             return true
         }
         catch(error){
