@@ -5,12 +5,12 @@ export default class Carrinho {
     this.itens = []; 
   }
 
-  adicionarItem(camisa) {
-    const itemExistente = this.itens.find(i => i.camisa.id === camisa.id);
+  adicionarItem(camisaa) {
+    const itemExistente = this.itens.find(i => i.camisaa.id === camisa.id);
     if (itemExistente) {
       itemExistente.incrementar();
     } else {
-      const novoItem = new ItemCarrinho(this.itens.length + 1, this.id, camisa, 1);
+      const novoItem = new ItemCarrinho(this.itens.length + 1, this.id, camisaa, 1);
       this.itens.push(novoItem);
     }
   }
