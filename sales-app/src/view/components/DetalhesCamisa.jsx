@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, Image, StyleSheet, TouchableWithoutFeedback, Animated } from 'react-native';
 import { useRef, useEffect } from 'react';
 
-export default function DetalhesCamisa({ produto, onFechar }) {
+export default function DetalhesDaCamisa({ produto, onFechar }) {
 
     const slideAnim = useRef(new Animated.Value(300)).current;
 

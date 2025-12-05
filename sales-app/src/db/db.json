@@ -31,7 +31,18 @@
       "id": "2",
       "nome": "Camisa do Mike",
       "preco": "109.90",
+<<<<<<< HEAD
+      "imagem": "https://link-da-imagem.com/camisa1.png",
+      "idAdmin": 2
+    },
+    {
+      "id": "3",
+      "nome": "Camisa da França",
+      "preco": "119.90",
+      "imagem": "https://link-da-imagem.com/camisa1.png",
+=======
       "imagem": "https://cdn.awsli.com.br/500x500/1839/1839799/produto/135586089/4653917eca.jpg",
+>>>>>>> c90b1905c60efeede61b19b01eae681270084e94
       "idAdmin": 2
     }
   ],
@@ -57,6 +68,90 @@
       "carrinhoId": "1",
       "camisaId": null,
       "quantidade": 1
+    },
+    {
+      "id": "b713",
+      "carrinhoId": "1",
+      "camisaId": "1",
+      "quantidade": 2
+    },
+    {
+      "id": "3091",
+      "carrinhoId": "1",
+      "camisaId": "3",
+      "quantidade": 1
+    },
+    {
+      "id": "39f9",
+      "carrinhoId": "1",
+      "camisaId": "1",
+      "quantidade": 2
+    },
+    {
+      "id": "dafa",
+      "carrinhoId": "1",
+      "camisaId": "1",
+      "quantidade": 2
+    },
+    {
+      "id": "78c6",
+      "carrinhoId": "1",
+      "camisaId": "2",
+      "quantidade": 1
+    },
+    {
+      "id": "754f",
+      "carrinhoId": "1",
+      "camisaId": "1",
+      "quantidade": 2
+    },
+    {
+      "id": "2577",
+      "carrinhoId": "1",
+      "camisaId": "1",
+      "quantidade": 2
+    },
+    {
+      "id": "8a77",
+      "carrinhoId": "1",
+      "camisaId": "1",
+      "quantidade": 2
+    },
+    {
+      "id": "1b7d",
+      "carrinhoId": "1",
+      "camisaId": "1",
+      "quantidade": 2
+    },
+    {
+      "id": "380b",
+      "carrinhoId": "1",
+      "camisaId": "1",
+      "quantidade": 5
+    },
+    {
+      "id": "c919",
+      "carrinhoId": "1",
+      "camisaId": "3",
+      "quantidade": 5
+    },
+    {
+      "id": "ec2a",
+      "carrinhoId": "1",
+      "camisaId": "2",
+      "quantidade": 6
+    },
+    {
+      "id": "f769",
+      "carrinhoId": "1",
+      "camisaId": "1",
+      "quantidade": 1
+    },
+    {
+      "id": "2353",
+      "carrinhoId": "1",
+      "camisaId": "3",
+      "quantidade": 2
     }
   ]
 }
